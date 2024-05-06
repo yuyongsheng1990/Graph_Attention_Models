@@ -99,6 +99,7 @@ def train_model(
         betas=(0.9, 0.95),
         weight_decay=0.01
     )
+    # pytorch用于在训练过程中动态地调整学习率，cosineAnnealingLR 学习率调节器，会根据余弦函数曲线动态地调整学习率，从而在训练过程中更加平滑实现学习率变化。
     lr_schedule = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
     loss_fn_main = nn.CrossEntropyLoss().to(device)
     loss_fn_sampling = nn.functional.binary_cross_entropy_with_logits
